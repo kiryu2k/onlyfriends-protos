@@ -61,7 +61,9 @@ func (m *CreateUserRequest) validate(all bool) error {
 
 	// no validation rules for Username
 
-	// no validation rules for DisplayName
+	if m.DisplayName != nil {
+		// no validation rules for DisplayName
+	}
 
 	if len(errors) > 0 {
 		return CreateUserRequestMultiError(errors)

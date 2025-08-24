@@ -15,7 +15,7 @@ message CreateUserRequest {
     min_bytes: 8,
     max_bytes: 31,
   }];
-  string display_name = 3 [(buf.validate.field).string = {
+  optional string display_name = 3 [(buf.validate.field).string = {
     max_bytes: 31
   }];
 }
