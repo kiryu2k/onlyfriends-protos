@@ -7,15 +7,17 @@ import "validate/validate.proto";
 option go_package = "./auth";
 
 message SignUpRequest {
-  string email = 1 [(buf.validate.field).string = {
+  string email = 1 [(validate.rules).string = {
     email: true,
-    max_bytes: 63,
+    max_len: 63,
   }];
-  string password = 2 [(buf.validate.field).string = {
-    max_bytes: 31,
-    min_bytes: 8,
+  string password = 2 [(validate.rules).string = {
+    max_len: 31,
+    min_len: 8,
   }];
-  string fingerprint = 3 [(buf.validate.field).required = true];
+  string fingerprint = 3 [(validate.rules).string = {
+    min_len: 1,
+  }];
 }
 
 message SignUpResponse {
@@ -25,15 +27,17 @@ message SignUpResponse {
 }
 
 message SignInRequest {
-  string email = 1 [(buf.validate.field).string = {
+  string email = 1 [(validate.rules).string = {
     email: true,
-    max_bytes: 63,
+    max_len: 63,
   }];
-  string password = 2 [(buf.validate.field).string = {
-    max_bytes: 31,
-    min_bytes: 8,
+  string password = 2 [(validate.rules).string = {
+    max_len: 31,
+    min_len: 8,
   }];
-  string fingerprint = 3 [(buf.validate.field).required = true];
+  string fingerprint = 3 [(validate.rules).string = {
+    min_len: 1,
+  }];
 }
 
 message SignInResponse {

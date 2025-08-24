@@ -57,12 +57,41 @@ func (m *CreateUserRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Id
+	if utf8.RuneCountInString(m.GetId()) > 63 {
+		err := CreateUserRequestValidationError{
+			field:  "Id",
+			reason: "value length must be at most 63 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
-	// no validation rules for Username
+	if l := utf8.RuneCountInString(m.GetUsername()); l < 8 || l > 31 {
+		err := CreateUserRequestValidationError{
+			field:  "Username",
+			reason: "value length must be between 8 and 31 runes, inclusive",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	if m.DisplayName != nil {
-		// no validation rules for DisplayName
+
+		if utf8.RuneCountInString(m.GetDisplayName()) > 31 {
+			err := CreateUserRequestValidationError{
+				field:  "DisplayName",
+				reason: "value length must be at most 31 runes",
+			}
+			if !all {
+				return err
+			}
+			errors = append(errors, err)
+		}
+
 	}
 
 	if len(errors) > 0 {
