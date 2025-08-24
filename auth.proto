@@ -24,6 +24,25 @@ message SignUpResponse {
   string refresh_token = 3;
 }
 
+message SignInRequest {
+  string email = 1 [(buf.validate.field).string = {
+    email: true,
+    max_bytes: 63,
+  }];
+  string password = 2 [(buf.validate.field).string = {
+    max_bytes: 31,
+    min_bytes: 8,
+  }];
+  string fingerprint = 3 [(buf.validate.field).required = true];
+}
+
+message SignInResponse {
+  string user_id = 1;
+  string access_token = 2;
+  string refresh_token = 3;
+}
+
 service Auth {
   rpc SignUp (SignUpRequest) returns (SignUpResponse);
+  rpc SignIn (SignInRequest) returns (SignInResponse);
 }
