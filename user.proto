@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package user;
+
+import "validate/validate.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "./user";
+
+message CreateUserRequest {
+  string id = 1 [(buf.validate.field).string = {
+    max_bytes: 63,
+  }];
+  string username = 2 [(buf.validate.field).string = {
+    min_bytes: 8,
+    max_bytes: 31,
+  }];
+  string display_name = 3 [(buf.validate.field).string = {
+    max_bytes: 31
+  }];
+}
+
+service User {
+  rpc CreateUser (CreateUserRequest)  returns (google.protobuf.Empty);
+}
