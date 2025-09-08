@@ -4,22 +4,75 @@ package user;
 
 import "validate/validate.proto";
 import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
 
 option go_package = "./user";
 
 message CreateUserRequest {
   string id = 1 [(validate.rules).string = {
-    max_len: 63,
+    max_len: 64,
   }];
   string username = 2 [(validate.rules).string = {
-    min_len: 8,
-    max_len: 31,
+    min_len: 2,
+    max_len: 32,
   }];
   optional string display_name = 3 [(validate.rules).string = {
-    max_len: 31
+    max_len: 32
+  }];
+}
+
+message GetUserRequest {
+  string id = 1 [(validate.rules).string = {
+    max_len: 64,
+  }];
+}
+
+message GetUserResponse {
+  string id = 1;
+  string username = 2;
+  optional string display_name = 3;
+  optional string pronounce = 4;
+  optional string bio = 5;
+  optional string avatar_id = 6;
+  optional string banner_id = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+}
+
+message UpdateUserRequest {
+  string id = 1 [(validate.rules).string = {
+    max_len: 64,
+  }];
+  string username = 2 [(validate.rules).string = {
+    min_len: 2,
+    max_len: 32,
+  }];
+  optional string display_name = 3 [(validate.rules).string = {
+    max_len: 32
+  }];
+  optional string pronounce = 4 [(validate.rules).string = {
+    max_len: 32
+  }];
+  optional string bio = 5 [(validate.rules).string = {
+    max_len: 128
+  }];
+  optional string avatar_id = 6 [(validate.rules).string = {
+    max_len: 64
+  }];
+  optional string banner_id = 7 [(validate.rules).string = {
+    max_len: 64
+  }];
+}
+
+message DeleteUserRequest {
+  string id = 1 [(validate.rules).string = {
+    max_len: 64,
   }];
 }
 
 service User {
   rpc CreateUser (CreateUserRequest)  returns (google.protobuf.Empty);
+  rpc GetUser (GetUserRequest)  returns (GetUserResponse);
+  rpc UpdateUser (UpdateUserRequest)  returns (google.protobuf.Empty);
+  rpc DeleteUser (DeleteUserRequest)  returns (google.protobuf.Empty);
 }
