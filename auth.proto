@@ -46,7 +46,24 @@ message SignInResponse {
   string refresh_token = 3;
 }
 
+message VerifyAccessTokenRequest {
+  string access_token = 1 [(validate.rules).string = {
+    min_len: 1,
+    max_len: 63,
+  }];
+}
+
+message AccessTokenPayload {
+  string user_id = 1;
+}
+
+message VerifyAccessTokenResponse {
+  AccessTokenPayload payload = 1;
+  bool is_valid = 2;
+}
+
 service Auth {
   rpc SignUp (SignUpRequest) returns (SignUpResponse);
   rpc SignIn (SignInRequest) returns (SignInResponse);
+  rpc VerifyAccessToken(VerifyAccessTokenRequest) returns (VerifyAccessTokenResponse);
 }

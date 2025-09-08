@@ -636,3 +636,353 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = SignInResponseValidationError{}
+
+// Validate checks the field values on VerifyAccessTokenRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *VerifyAccessTokenRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on VerifyAccessTokenRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// VerifyAccessTokenRequestMultiError, or nil if none found.
+func (m *VerifyAccessTokenRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *VerifyAccessTokenRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if l := utf8.RuneCountInString(m.GetAccessToken()); l < 1 || l > 63 {
+		err := VerifyAccessTokenRequestValidationError{
+			field:  "AccessToken",
+			reason: "value length must be between 1 and 63 runes, inclusive",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(errors) > 0 {
+		return VerifyAccessTokenRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// VerifyAccessTokenRequestMultiError is an error wrapping multiple validation
+// errors returned by VerifyAccessTokenRequest.ValidateAll() if the designated
+// constraints aren't met.
+type VerifyAccessTokenRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m VerifyAccessTokenRequestMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m VerifyAccessTokenRequestMultiError) AllErrors() []error { return m }
+
+// VerifyAccessTokenRequestValidationError is the validation error returned by
+// VerifyAccessTokenRequest.Validate if the designated constraints aren't met.
+type VerifyAccessTokenRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e VerifyAccessTokenRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e VerifyAccessTokenRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e VerifyAccessTokenRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e VerifyAccessTokenRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e VerifyAccessTokenRequestValidationError) ErrorName() string {
+	return "VerifyAccessTokenRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e VerifyAccessTokenRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sVerifyAccessTokenRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = VerifyAccessTokenRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = VerifyAccessTokenRequestValidationError{}
+
+// Validate checks the field values on AccessTokenPayload with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *AccessTokenPayload) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on AccessTokenPayload with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// AccessTokenPayloadMultiError, or nil if none found.
+func (m *AccessTokenPayload) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *AccessTokenPayload) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for UserId
+
+	if len(errors) > 0 {
+		return AccessTokenPayloadMultiError(errors)
+	}
+
+	return nil
+}
+
+// AccessTokenPayloadMultiError is an error wrapping multiple validation errors
+// returned by AccessTokenPayload.ValidateAll() if the designated constraints
+// aren't met.
+type AccessTokenPayloadMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m AccessTokenPayloadMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m AccessTokenPayloadMultiError) AllErrors() []error { return m }
+
+// AccessTokenPayloadValidationError is the validation error returned by
+// AccessTokenPayload.Validate if the designated constraints aren't met.
+type AccessTokenPayloadValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e AccessTokenPayloadValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e AccessTokenPayloadValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e AccessTokenPayloadValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e AccessTokenPayloadValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e AccessTokenPayloadValidationError) ErrorName() string {
+	return "AccessTokenPayloadValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e AccessTokenPayloadValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sAccessTokenPayload.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = AccessTokenPayloadValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = AccessTokenPayloadValidationError{}
+
+// Validate checks the field values on VerifyAccessTokenResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *VerifyAccessTokenResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on VerifyAccessTokenResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// VerifyAccessTokenResponseMultiError, or nil if none found.
+func (m *VerifyAccessTokenResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *VerifyAccessTokenResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetPayload()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, VerifyAccessTokenResponseValidationError{
+					field:  "Payload",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, VerifyAccessTokenResponseValidationError{
+					field:  "Payload",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetPayload()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return VerifyAccessTokenResponseValidationError{
+				field:  "Payload",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for IsValid
+
+	if len(errors) > 0 {
+		return VerifyAccessTokenResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// VerifyAccessTokenResponseMultiError is an error wrapping multiple validation
+// errors returned by VerifyAccessTokenResponse.ValidateAll() if the
+// designated constraints aren't met.
+type VerifyAccessTokenResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m VerifyAccessTokenResponseMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m VerifyAccessTokenResponseMultiError) AllErrors() []error { return m }
+
+// VerifyAccessTokenResponseValidationError is the validation error returned by
+// VerifyAccessTokenResponse.Validate if the designated constraints aren't met.
+type VerifyAccessTokenResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e VerifyAccessTokenResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e VerifyAccessTokenResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e VerifyAccessTokenResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e VerifyAccessTokenResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e VerifyAccessTokenResponseValidationError) ErrorName() string {
+	return "VerifyAccessTokenResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e VerifyAccessTokenResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sVerifyAccessTokenResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = VerifyAccessTokenResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = VerifyAccessTokenResponseValidationError{}
