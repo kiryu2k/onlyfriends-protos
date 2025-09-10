@@ -9,11 +9,11 @@ option go_package = "./auth";
 message SignUpRequest {
   string email = 1 [(validate.rules).string = {
     email: true,
-    max_len: 63,
+    max_len: 64,
   }];
   string password = 2 [(validate.rules).string = {
-    max_len: 31,
     min_len: 8,
+    max_len: 32,
   }];
   string fingerprint = 3 [(validate.rules).string = {
     min_len: 1,
@@ -29,11 +29,11 @@ message SignUpResponse {
 message SignInRequest {
   string email = 1 [(validate.rules).string = {
     email: true,
-    max_len: 63,
+    max_len: 64,
   }];
   string password = 2 [(validate.rules).string = {
-    max_len: 31,
     min_len: 8,
+    max_len: 32,
   }];
   string fingerprint = 3 [(validate.rules).string = {
     min_len: 1,
@@ -48,8 +48,8 @@ message SignInResponse {
 
 message VerifyAccessTokenRequest {
   string access_token = 1 [(validate.rules).string = {
-    min_len: 1,
-    max_len: 63,
+    min_len: 20,
+    max_len: 512,
   }];
 }
 

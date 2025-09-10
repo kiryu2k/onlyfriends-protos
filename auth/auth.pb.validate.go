@@ -57,10 +57,10 @@ func (m *SignUpRequest) validate(all bool) error {
 
 	var errors []error
 
-	if utf8.RuneCountInString(m.GetEmail()) > 63 {
+	if utf8.RuneCountInString(m.GetEmail()) > 64 {
 		err := SignUpRequestValidationError{
 			field:  "Email",
-			reason: "value length must be at most 63 runes",
+			reason: "value length must be at most 64 runes",
 		}
 		if !all {
 			return err
@@ -80,10 +80,10 @@ func (m *SignUpRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	if l := utf8.RuneCountInString(m.GetPassword()); l < 8 || l > 31 {
+	if l := utf8.RuneCountInString(m.GetPassword()); l < 8 || l > 32 {
 		err := SignUpRequestValidationError{
 			field:  "Password",
-			reason: "value length must be between 8 and 31 runes, inclusive",
+			reason: "value length must be between 8 and 32 runes, inclusive",
 		}
 		if !all {
 			return err
@@ -358,10 +358,10 @@ func (m *SignInRequest) validate(all bool) error {
 
 	var errors []error
 
-	if utf8.RuneCountInString(m.GetEmail()) > 63 {
+	if utf8.RuneCountInString(m.GetEmail()) > 64 {
 		err := SignInRequestValidationError{
 			field:  "Email",
-			reason: "value length must be at most 63 runes",
+			reason: "value length must be at most 64 runes",
 		}
 		if !all {
 			return err
@@ -381,10 +381,10 @@ func (m *SignInRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
-	if l := utf8.RuneCountInString(m.GetPassword()); l < 8 || l > 31 {
+	if l := utf8.RuneCountInString(m.GetPassword()); l < 8 || l > 32 {
 		err := SignInRequestValidationError{
 			field:  "Password",
-			reason: "value length must be between 8 and 31 runes, inclusive",
+			reason: "value length must be between 8 and 32 runes, inclusive",
 		}
 		if !all {
 			return err
@@ -659,10 +659,10 @@ func (m *VerifyAccessTokenRequest) validate(all bool) error {
 
 	var errors []error
 
-	if l := utf8.RuneCountInString(m.GetAccessToken()); l < 1 || l > 63 {
+	if l := utf8.RuneCountInString(m.GetAccessToken()); l < 20 || l > 512 {
 		err := VerifyAccessTokenRequestValidationError{
 			field:  "AccessToken",
-			reason: "value length must be between 1 and 63 runes, inclusive",
+			reason: "value length must be between 20 and 512 runes, inclusive",
 		}
 		if !all {
 			return err
