@@ -986,3 +986,213 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = VerifyAccessTokenResponseValidationError{}
+
+// Validate checks the field values on RefreshAccessTokenRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *RefreshAccessTokenRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on RefreshAccessTokenRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// RefreshAccessTokenRequestMultiError, or nil if none found.
+func (m *RefreshAccessTokenRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *RefreshAccessTokenRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for RefreshToken
+
+	if len(errors) > 0 {
+		return RefreshAccessTokenRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// RefreshAccessTokenRequestMultiError is an error wrapping multiple validation
+// errors returned by RefreshAccessTokenRequest.ValidateAll() if the
+// designated constraints aren't met.
+type RefreshAccessTokenRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m RefreshAccessTokenRequestMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m RefreshAccessTokenRequestMultiError) AllErrors() []error { return m }
+
+// RefreshAccessTokenRequestValidationError is the validation error returned by
+// RefreshAccessTokenRequest.Validate if the designated constraints aren't met.
+type RefreshAccessTokenRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e RefreshAccessTokenRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e RefreshAccessTokenRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e RefreshAccessTokenRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e RefreshAccessTokenRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e RefreshAccessTokenRequestValidationError) ErrorName() string {
+	return "RefreshAccessTokenRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e RefreshAccessTokenRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sRefreshAccessTokenRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = RefreshAccessTokenRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = RefreshAccessTokenRequestValidationError{}
+
+// Validate checks the field values on RefreshAccessTokenResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *RefreshAccessTokenResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on RefreshAccessTokenResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// RefreshAccessTokenResponseMultiError, or nil if none found.
+func (m *RefreshAccessTokenResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *RefreshAccessTokenResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for AccessToken
+
+	// no validation rules for RefreshToken
+
+	if len(errors) > 0 {
+		return RefreshAccessTokenResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// RefreshAccessTokenResponseMultiError is an error wrapping multiple
+// validation errors returned by RefreshAccessTokenResponse.ValidateAll() if
+// the designated constraints aren't met.
+type RefreshAccessTokenResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m RefreshAccessTokenResponseMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m RefreshAccessTokenResponseMultiError) AllErrors() []error { return m }
+
+// RefreshAccessTokenResponseValidationError is the validation error returned
+// by RefreshAccessTokenResponse.Validate if the designated constraints aren't met.
+type RefreshAccessTokenResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e RefreshAccessTokenResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e RefreshAccessTokenResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e RefreshAccessTokenResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e RefreshAccessTokenResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e RefreshAccessTokenResponseValidationError) ErrorName() string {
+	return "RefreshAccessTokenResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e RefreshAccessTokenResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sRefreshAccessTokenResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = RefreshAccessTokenResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = RefreshAccessTokenResponseValidationError{}
