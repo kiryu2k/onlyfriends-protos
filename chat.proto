@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package chat;
+
+import "validate/validate.proto";
+import "google/protobuf/empty.proto";
+
+option go_package = "./chat";
+
+message FriendshipRequest {
+  string sender_id = 1 [(validate.rules).string = {
+    min_len: 1,
+    max_len: 64,
+  }];
+  string receiver_id = 2 [(validate.rules).string = {
+    min_len: 1,
+    max_len: 64,
+  }];
+}
+
+service Friendship {
+  rpc SendFriendshipRequest (FriendshipRequest) returns (google.protobuf.Empty);
+}

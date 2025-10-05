@@ -1,6 +1,6 @@
 #!/bin/bash
 
-services=("auth" "user")
+services=("auth" "user" "chat")
 
 for service in "${services[@]}"; do
   echo "Generating code for $service.proto..."
