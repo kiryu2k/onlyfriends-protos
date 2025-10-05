@@ -57,10 +57,10 @@ func (m *CreateUserRequest) validate(all bool) error {
 
 	var errors []error
 
-	if utf8.RuneCountInString(m.GetId()) > 64 {
+	if l := utf8.RuneCountInString(m.GetId()); l < 1 || l > 64 {
 		err := CreateUserRequestValidationError{
 			field:  "Id",
-			reason: "value length must be at most 64 runes",
+			reason: "value length must be between 1 and 64 runes, inclusive",
 		}
 		if !all {
 			return err
@@ -196,10 +196,10 @@ func (m *GetUserRequest) validate(all bool) error {
 
 	var errors []error
 
-	if utf8.RuneCountInString(m.GetId()) > 64 {
+	if l := utf8.RuneCountInString(m.GetId()); l < 1 || l > 64 {
 		err := GetUserRequestValidationError{
 			field:  "Id",
-			reason: "value length must be at most 64 runes",
+			reason: "value length must be between 1 and 64 runes, inclusive",
 		}
 		if !all {
 			return err
@@ -489,10 +489,10 @@ func (m *UpdateUserRequest) validate(all bool) error {
 
 	var errors []error
 
-	if utf8.RuneCountInString(m.GetId()) > 64 {
+	if l := utf8.RuneCountInString(m.GetId()); l < 1 || l > 64 {
 		err := UpdateUserRequestValidationError{
 			field:  "Id",
-			reason: "value length must be at most 64 runes",
+			reason: "value length must be between 1 and 64 runes, inclusive",
 		}
 		if !all {
 			return err
@@ -688,10 +688,10 @@ func (m *DeleteUserRequest) validate(all bool) error {
 
 	var errors []error
 
-	if utf8.RuneCountInString(m.GetId()) > 64 {
+	if l := utf8.RuneCountInString(m.GetId()); l < 1 || l > 64 {
 		err := DeleteUserRequestValidationError{
 			field:  "Id",
-			reason: "value length must be at most 64 runes",
+			reason: "value length must be between 1 and 64 runes, inclusive",
 		}
 		if !all {
 			return err

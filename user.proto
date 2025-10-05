@@ -10,6 +10,7 @@ option go_package = "./user";
 
 message CreateUserRequest {
   string id = 1 [(validate.rules).string = {
+    min_len: 1,
     max_len: 64,
   }];
   string username = 2 [(validate.rules).string = {
@@ -23,6 +24,7 @@ message CreateUserRequest {
 
 message GetUserRequest {
   string id = 1 [(validate.rules).string = {
+    min_len: 1,
     max_len: 64,
   }];
 }
@@ -41,6 +43,7 @@ message GetUserResponse {
 
 message UpdateUserRequest {
   string id = 1 [(validate.rules).string = {
+    min_len: 1,
     max_len: 64,
   }];
   string username = 2 [(validate.rules).string = {
@@ -66,6 +69,7 @@ message UpdateUserRequest {
 
 message DeleteUserRequest {
   string id = 1 [(validate.rules).string = {
+    min_len: 1,
     max_len: 64,
   }];
 }
